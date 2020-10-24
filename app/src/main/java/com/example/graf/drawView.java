@@ -153,7 +153,7 @@ public class drawView extends View {
             scaling-=(scaling*0.1);
             radius=radius*scaling;
             //Log.i("rectify" , "graphsize:"+graph.getSize()+"radius:"+radius);
-            graph.onNewScale(radius);
+            graph.onNewScale(radius , type , screenwidth);
             prevSize+=5;
         }
         canvas.drawColor(Color.WHITE);

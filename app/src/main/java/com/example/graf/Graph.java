@@ -187,11 +187,12 @@ class Graph {
      * changes the value of radius and repositions every edge on the basis of new scaled radius
      * @param radius
      */
-    public void onNewScale(float radius){
+    public void onNewScale(float radius ,int type , float screenwidth){
         for(Node i:nodeList.values()){
             i.updateRadius(radius);
         }
         edgeList.clear();
+        strokeList.clear();
         for(Map.Entry<String , ArrayList<String>> i:adjacencyList.entrySet()){
             float startx=nodeList.get(i.getKey()).getCenterx();
             float starty=nodeList.get(i.getKey()).getCentery();
@@ -203,6 +204,11 @@ class Graph {
                 e.generateEdge(startx , starty , endx , endy , radius);
                 String s=""+i.getKey()+x;
                 createEdge(s , e);
+                if(type==1){
+                    Stroke strk=new Stroke();
+                    strk.generateStroke(e.getStartingx() , e.getStartingy() , e.getEndingx() , e.getEndingy() , screenwidth);
+                    createStroke(s , strk);
+                }
             }
         }
     }
