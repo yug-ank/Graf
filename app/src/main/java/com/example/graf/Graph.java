@@ -1,5 +1,7 @@
 package com.example.graf;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +50,7 @@ class Graph {
         adjacencyList.put(s , new ArrayList<String>());
     }
 
-    public void addEdge(String s , String d){
+    public void addUndirectedEdge(String s , String d){
         //add an edge to the if not already present
         if(!adjacencyList.containsKey(s)){
             addVertex(s);
@@ -58,6 +60,17 @@ class Graph {
         }
         adjacencyList.get(s).add(d);
         adjacencyList.get(d).add(s);
+    }
+
+    public void addDirectedEdge(String s , String d){
+        //add an edge to the if not already present
+        if(!adjacencyList.containsKey(s)){
+            addVertex(s);
+        }
+        if(!adjacencyList.containsKey(d)){
+            addVertex(d);
+        }
+        adjacencyList.get(s).add(d);
     }
 
     public void createNode(String u , Node n){
@@ -96,7 +109,7 @@ class Graph {
         return nodeList.get(vertex);
     }
 
-    public boolean containsEdge(String u , String v){
+    public boolean containsUndirectedEdge(String u , String v){
         /**
          * function to check if a given edge starting from node u and ending at node v is present in the edgeList or not
          * returns true if present
@@ -106,6 +119,23 @@ class Graph {
             return true;
         }
         return false;
+    }
+
+    public boolean containDirectedEdge(String u , String v){
+        if(edgeList.containsKey(""+u+v)){
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public Edges getEdge(String u , String v){
+
+        return edgeList.get(""+u+v);
+    }
+
+    public Stroke getStroke(String u , String v){
+        return strokeList.get(""+u+v);
     }
     public int optimalCircle(float x  , float y , String n , String m , float radius){
         /**
@@ -171,28 +201,37 @@ class Graph {
                 //Log.i("rectify" , " u:"+i.getValue()+" v:"+x);
                 Edges e=new Edges();
                 e.generateEdge(startx , starty , endx , endy , radius);
-                String s=""+i.getValue()+x;
+                String s=""+i.getKey()+x;
                 createEdge(s , e);
             }
         }
     }
-    /*public void updateVertical(float ratio) {
+    public void updateHeight(float ratio , int type , float screenwidth) {
+
         for (Node i : nodeList.values()) {
             float y = i.getCentery() * ratio;
             i.updatey(y);
         }
         edgeList.clear();
+        strokeList.clear();
         for (Map.Entry<String, ArrayList<String>> i : adjacencyList.entrySet()) {
             float startx = nodeList.get(i.getKey()).getCenterx();
             float starty = nodeList.get(i.getKey()).getCentery();
-            for (int x : i.getValue()) {
+            for (String x : i.getValue()) {
                 float endx = nodeList.get(x).getCenterx();
                 float endy = nodeList.get(x).getCentery();
                 //Log.i("rectify" , " u:"+i.getValue()+" v:"+x);
-                Edges e = generateEdge(startx, starty, endx, endy, nodeList.get(i.getKey()).getRadius());
-                String s = "" + i.getValue() + x;
+                Edges e = new Edges();
+                e.generateEdge(startx, starty, endx, endy, nodeList.get(i.getKey()).getRadius());
+                String s = "" + i.getKey() + x;
                 createEdge(s, e);
+                if(type==1){
+                    Stroke strk=new Stroke();
+                    strk.generateStroke(e.getStartingx() , e.getStartingy() , e.getEndingx() , e.getEndingy() , screenwidth);
+                    createStroke(s , strk);
+                }
             }
         }
-    }*/
+        Log.i("rectify" , "edges-"+edgeList.keySet());
+    }
 }

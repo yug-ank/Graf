@@ -32,7 +32,7 @@ public class drawView extends View {
     static int flagr=0;
     static float height;
     static float screenwidth;
-
+    static int type;
     /**
      * scaling used to reduce the scale of radius of node when number of nodes increase a particular value
      * graph represents the object of graph class
@@ -45,6 +45,8 @@ public class drawView extends View {
      * radius presents the value of value radius to draw with
      * flagr to check if value of radius is set or not(1 if set else 0)
      * screenwidth stores the value of width of view
+     * height stores the height of the screen
+     * type contains the type of graph(1 if directed else 0 for undirected)
      */
     public drawView(Context context) {
         super(context);
@@ -92,21 +94,51 @@ public class drawView extends View {
         if(!graph.getAdjacencylist().containsKey(v)){
             flagv=1;
         }
-        if(!graph.containsEdge(u  , v)) {
+        if(type==0 && !graph.containsUndirectedEdge(u , v)) {
             edge = 1;
+        }
+        if(type==1 && !graph.containDirectedEdge(u , v)) {
+                if(graph.containDirectedEdge(v , u)){
+                    Toast.makeText(getContext() , "edge already directed" , Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    edge = 1;
+                }
         }
         //if the node are already present we only need to draw the edge
         if(edge==1 && flagu==0 && flagv==0){
-            graph.addEdge(u , v);
-            Node nu=graph.getNode(u);
-            Node nv=graph.getNode(v);
-            Edges e=new Edges();
-            e.generateEdge(nu.getCenterx() , nu.getCentery() , nv.getCenterx() , nv.getCentery() , nu.getRadius());
-            String s=""+u+v;
-            graph.createEdge(s , e);
-            edge=0;
+            if(type==0){
+                graph.addUndirectedEdge(u , v);
+                Node nu=graph.getNode(u);
+                Node nv=graph.getNode(v);
+                Edges e=new Edges();
+                e.generateEdge(nu.getCenterx() , nu.getCentery() , nv.getCenterx() , nv.getCentery() , nu.getRadius());
+                String s=""+u+v;
+                graph.createEdge(s , e);
+                s=""+v+u;
+                graph.createEdge(s , e);
+                edge=0;
+            }
+            else{
+                graph.addDirectedEdge(u , v);
+                Node nu=graph.getNode(u);
+                Node nv=graph.getNode(v);
+                Edges e=new Edges();
+                e.generateEdge(nu.getCenterx() , nu.getCentery() , nv.getCenterx() , nv.getCentery() , nu.getRadius());
+                String s=""+u+v;
+                graph.createEdge(s , e);
+                Stroke strk=new Stroke();
+                strk.generateStroke(e.getStartingx() , e.getStartingy() , e.getEndingx() , e.getEndingy() , screenwidth);
+                graph.createStroke(s , strk);
+                edge=0;
+            }
         }
     }
+
+    public void setType(int type){
+        this.type=type;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -120,46 +152,36 @@ public class drawView extends View {
         if(graph.getSize()==prevSize+5){
             scaling-=(scaling*0.1);
             radius=radius*scaling;
-            Log.i("rectify" , "graphsize:"+graph.getSize()+"radius:"+radius);
+            //Log.i("rectify" , "graphsize:"+graph.getSize()+"radius:"+radius);
             graph.onNewScale(radius);
             prevSize+=5;
         }
         canvas.drawColor(Color.WHITE);
-        for(Map.Entry<String , Node> i:graph.getNodeList().entrySet()){
-            float x=i.getValue().getCenterx();
-            float y=i.getValue().getCentery();
-            float radius=i.getValue().getRadius();
-            float textsize=i.getValue().getTextSize();
-            canvas.drawCircle(x , y , radius , circlePaint);
-            String s=""+i.getKey();
+       // Log.i("rectify" , graph.getStrokelist().keySet().toString());
+        for(Map.Entry<String , ArrayList<String>> i:graph.getAdjacencylist().entrySet()){
+            Node nu=graph.getNode(i.getKey());
             Rect bound=new Rect();
-            textPaint.setTextSize(textsize);
             textPaint.setUnderlineText(false);
-            textPaint.getTextBounds(s , 0 , s.length() , bound);
-            canvas.drawText(s , x , y+(bound.height()/2) , textPaint);
+            float textsize=nu.getTextSize();
+            textPaint.setTextSize(textsize);
+            canvas.drawCircle(nu.getCenterx() , nu.getCentery() , nu.getRadius() , circlePaint);
+            String u=i.getKey();
+            textPaint.getTextBounds(u , 0 , u.length() , bound);
+            canvas.drawText(u , nu.getCenterx() , nu.getCentery()+(bound.height()/2) , textPaint);
+            for(String v:i.getValue()){
+                Node nv=graph.getNode(v);
+                canvas.drawCircle(nv.getCenterx() , nv.getCentery() , nv.getRadius() , circlePaint);
+                textPaint.getTextBounds(v , 0 , v.length() , bound);
+                canvas.drawText(v , nv.getCenterx() , nv.getCentery()+(bound.height()/2) , textPaint);
+                Edges e=graph.getEdge(u , v);
+                canvas.drawLine(e.getStartingx() , e.getStartingy() , e.getEndingx() , e.getEndingy() , linePaint);
+                if(type==1){
+                    Stroke s=graph.getStroke(u , v);
+                    canvas.drawLine(s.getStartx() , s.getStarty() , s.getEndx1() , s.getEndy1() , linePaint);
+                    canvas.drawLine(s.getStartx() , s.getStarty() , s.getEndx2() , s.getEndy2() , linePaint);
+                }
+            }
         }
-        for(Map.Entry<String  , Edges> i:graph.getEdgeList().entrySet()) {
-            float sx=i.getValue().getStartingx();
-            float sy=i.getValue().getStartingy();
-            float ex=i.getValue().getEndingx();
-            float ey=i.getValue().getEndingy();
-            canvas.drawLine(sx , sy , ex , ey , linePaint);
-        }
-       /* for(stroke i:graph.getStrokelist().values()){
-            Paint pathpaint=new Paint();
-            pathpaint.setAntiAlias(true);
-            pathpaint.setStyle(Paint.Style.FILL_AND_STROKE);
-            pathpaint.setColor(Color.BLUE);
-            Path path=new Path();
-            path.moveTo(i.getStartx() , i.getStarty());
-            path.lineTo(i.getEndx1() , i.getEndy1());
-            //path.moveTo(i.getEndx1() , i.getEndy1());
-            path.lineTo(i.getEndx2() , i.getEndy2());
-            //path.moveTo(i.getEndx2() , i.getEndy2());
-            path.lineTo(i.getStartx() , i.getStarty());
-            path.close();
-            canvas.drawPath(path , pathpaint);
-        }*/
         invalidate();
     }
 
@@ -179,14 +201,31 @@ public class drawView extends View {
                 graph.createNode(u , n);
                 flagu=0;
                 if(edge==1 && flagu==0 && flagv==0){
-                    graph.addEdge(u , v);
-                    Node nu=graph.getNode(u);
-                    Node nv=graph.getNode(v);
-                    Edges e=new Edges();
-                    e.generateEdge(nu.getCenterx() , nu.getCentery() , nv.getCenterx() , nv.getCentery() , nu.getRadius());
-                    String s=""+u+v;
-                    graph.createEdge(s , e);
-                    edge=0;
+                    if(type==0){
+                        graph.addUndirectedEdge(u , v);
+                        Node nu=graph.getNode(u);
+                        Node nv=graph.getNode(v);
+                        Edges e=new Edges();
+                        e.generateEdge(nu.getCenterx() , nu.getCentery() , nv.getCenterx() , nv.getCentery() , nu.getRadius());
+                        String s=""+u+v;
+                        graph.createEdge(s , e);
+                        s=""+v+u;
+                        graph.createEdge(s , e);
+                        edge=0;
+                    }
+                    else{
+                        graph.addDirectedEdge(u , v);
+                        Node nu=graph.getNode(u);
+                        Node nv=graph.getNode(v);
+                        Edges e=new Edges();
+                        e.generateEdge(nu.getCenterx() , nu.getCentery() , nv.getCenterx() , nv.getCentery() , nu.getRadius());
+                        String s=""+u+v;
+                        graph.createEdge(s , e);
+                        Stroke strk=new Stroke();
+                        strk.generateStroke(e.getStartingx() , e.getStartingy() , e.getEndingx() , e.getEndingy() , screenwidth);
+                        graph.createStroke(s , strk);
+                        edge=0;
+                    }
                 }
             }
             else if(i==1){
@@ -204,14 +243,31 @@ public class drawView extends View {
                 graph.createNode(v , n);
                 flagv=0;
                 if(edge==1 && flagu==0 && flagv==0){
-                    graph.addEdge(u , v);
-                    Node nu=graph.getNode(u);
-                    Node nv=graph.getNode(v);
-                    Edges e=new Edges();
-                    e.generateEdge(nu.getCenterx() , nu.getCentery() , nv.getCenterx() , nv.getCentery() , nu.getRadius());
-                    String s=""+u+v;
-                    graph.createEdge(s , e);
-                    edge=0;
+                    if(type==0){
+                        graph.addUndirectedEdge(u , v);
+                        Node nu=graph.getNode(u);
+                        Node nv=graph.getNode(v);
+                        Edges e=new Edges();
+                        e.generateEdge(nu.getCenterx() , nu.getCentery() , nv.getCenterx() , nv.getCentery() , nu.getRadius());
+                        String s=""+u+v;
+                        graph.createEdge(s , e);
+                        s=""+v+u;
+                        graph.createEdge(s , e);
+                        edge=0;
+                    }
+                    else{
+                        graph.addDirectedEdge(u , v);
+                        Node nu=graph.getNode(u);
+                        Node nv=graph.getNode(v);
+                        Edges e=new Edges();
+                        e.generateEdge(nu.getCenterx() , nu.getCentery() , nv.getCenterx() , nv.getCentery() , nu.getRadius());
+                        String s=""+u+v;
+                        graph.createEdge(s , e);
+                        Stroke strk=new Stroke();
+                        strk.generateStroke(e.getStartingx() , e.getStartingy() , e.getEndingx() , e.getEndingy() , screenwidth);
+                        graph.createStroke(s , strk);
+                        edge=0;
+                    }
                 }
             }
             else if(i==1){

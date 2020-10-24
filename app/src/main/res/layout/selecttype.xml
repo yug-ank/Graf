@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectType"
+    android:background="#E1F6FC"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Type of Graph"
+        android:textAlignment="center"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp" />
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="200dp"
+        android:columnCount="2" >
+        <Button
+            android:id="@+id/dg"
+            android:background="@drawable/optionbutton"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="Directed Graph"
+            android:layout_margin="10dp"
+            android:onClick="directed"/>
+        <Button
+            android:id="@+id/udg"
+            android:background="@drawable/optionbutton"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="Undirected Graph"
+            android:layout_margin="10dp"
+            android:onClick="undirected"/>
+    </GridLayout>
+</LinearLayout>

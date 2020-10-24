@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SelectType"></activity>
+        <activity android:name=".Draw"
+                  android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

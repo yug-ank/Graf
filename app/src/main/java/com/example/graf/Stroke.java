@@ -82,8 +82,8 @@ class Stroke{
                     endy1=((l45*endx1)+c45);
                     endx2=(2*midx)-endx1;
                     endy2=(2*midy)-endy1;
-                    this.startx=startx;
-                    this.starty=starty;
+                    this.startx=endx;
+                    this.starty=endy;
                     this.endx1=endx1;
                     this.endy1=endy1;
                     this.endx2=endx2;
