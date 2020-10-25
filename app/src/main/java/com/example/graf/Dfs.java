@@ -17,6 +17,7 @@ public class Dfs extends View {
     static Graph graph;
     static float prevheight , newheight , flag=0 ;
     static int type=0;
+    static String start;
     Paint circlePaint , linePaint , textPaint;
     public Dfs(Context context) {
         super(context);
@@ -53,10 +54,12 @@ public class Dfs extends View {
         linePaint.setStrokeWidth(stroke);
         linePaint.setStyle(Paint.Style.STROKE);
     }
-    public void setData(Graph graph , float prevheight ,int type){
+    public void setData(Graph graph , float prevheight ,int type , String start){
         this.graph=graph;
         this.prevheight=prevheight;
         this.type=type;
+        this.start=start;
+
         this.invalidate();
     }
     public void onDraw(Canvas canvas){
@@ -68,6 +71,7 @@ public class Dfs extends View {
             graph.updateHeight(ratio , type , this.getResources().getDisplayMetrics().widthPixels);
             flag=1;
         }
+        Log.i("rectify" , start);
         for(Map.Entry<String , ArrayList<String>> i:graph.getAdjacencylist().entrySet()){
             Node nu=graph.getNode(i.getKey());
             Rect bound=new Rect();

@@ -2,11 +2,16 @@ package com.example.graf;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 public class Draw extends Activity {
 
@@ -29,7 +34,7 @@ public class Draw extends Activity {
         to=(EditText)findViewById(R.id.end);
         dview= new drawView(this);
         btn=(Button)findViewById(R.id.calculate);
-        btn.setText("Calculate"+" "+intent.getStringExtra("algo"));
+        btn.setText(intent.getStringExtra("algo"));
     }
     public void addEdge(View view){
         String u=from.getText().toString();
@@ -38,8 +43,26 @@ public class Draw extends Activity {
         dview.getData(u , v);
     }
     public void calculate(View view){
-            Dfs dfs=new Dfs(this);
-            setContentView(R.layout.result);
-            dfs.setData(dview.graph , dview.height  , typeflag);
+            final Dfs dfs=new Dfs(this);
+            LayoutInflater inflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+            View popup=inflater.inflate(R.layout.startingvertex , null);
+            int width= LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height=LinearLayout.LayoutParams.WRAP_CONTENT;
+            final PopupWindow popupWindow=new PopupWindow(popup , width , height , true);
+            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+                popupWindow.setElevation(20);
+            }
+            popupWindow.showAtLocation(view , Gravity.CENTER , 0 , 0);
+            final EditText input=(EditText)popup.findViewById(R.id.input);
+            Button start=(Button)popup.findViewById(R.id.start);
+            start.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String x =input.getText().toString();
+                    popupWindow.dismiss();
+                    setContentView(R.layout.result);
+                    dfs.setData(dview.graph , dview.height  , typeflag , x);
+                    }
+            });
     }
 }
