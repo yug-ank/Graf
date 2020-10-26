@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 public class Draw extends Activity {
-
     private  EditText from , to;
     private int typeflag;
     private drawView dview;
@@ -44,6 +43,7 @@ public class Draw extends Activity {
     }
     public void calculate(View view){
             final Dfs dfs=new Dfs(this);
+            final Intent dfsintent=new Intent(this , Result.class);
             LayoutInflater inflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
             View popup=inflater.inflate(R.layout.startingvertex , null);
             int width= LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -60,8 +60,8 @@ public class Draw extends Activity {
                 public void onClick(View view) {
                     String x =input.getText().toString();
                     popupWindow.dismiss();
-                    setContentView(R.layout.result);
                     dfs.setData(dview.graph , dview.height  , typeflag , x);
+                    startActivity(dfsintent);
                     }
             });
     }

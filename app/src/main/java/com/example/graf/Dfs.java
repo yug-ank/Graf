@@ -7,13 +7,16 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 
 import androidx.annotation.Nullable;
 
-public class Dfs extends View {
+public class Dfs extends View implements Serializable {
     static Graph graph;
     static float prevheight , newheight , flag=0 ;
     static int type=0;
