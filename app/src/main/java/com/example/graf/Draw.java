@@ -35,6 +35,9 @@ public class Draw extends Activity {
         btn=(Button)findViewById(R.id.calculate);
         btn.setText(intent.getStringExtra("algo"));
     }
+    public void onBackPressed(){
+        dview.graph=new Graph();
+    }
     public void addEdge(View view){
         String u=from.getText().toString();
         String v=to.getText().toString();
