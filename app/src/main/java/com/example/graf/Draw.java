@@ -18,10 +18,13 @@ public class Draw extends Activity {
     private int typeflag;
     private drawView dview;
     private Button btn;
+    private Intent intent;
+    Result result;
+    Intent resultintent;
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.draw);
-        Intent intent=getIntent();
+        intent=getIntent();
         String type=intent.getStringExtra(SelectType.type);
         if(type.equals("directed")){
             typeflag=1;
@@ -34,6 +37,9 @@ public class Draw extends Activity {
         dview= new drawView(this);
         btn=(Button)findViewById(R.id.calculate);
         btn.setText(intent.getStringExtra("algo"));
+        result = new Result();
+        resultintent = new Intent(this, Result.class);
+        resultintent.putExtra("algo" , intent.getStringExtra("algo"));
     }
     public void onBackPressed(){
         dview.graph=new Graph();
@@ -44,28 +50,28 @@ public class Draw extends Activity {
         dview.setType(typeflag);
         dview.getData(u , v);
     }
-    public void calculate(View view){
-            final Result result=new Result();
-            final Intent resultintent=new Intent(this , Result.class);
-            LayoutInflater inflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-            View popup=inflater.inflate(R.layout.startingvertex , null);
-            int width= LinearLayout.LayoutParams.WRAP_CONTENT;
-            int height=LinearLayout.LayoutParams.WRAP_CONTENT;
-            final PopupWindow popupWindow=new PopupWindow(popup , width , height , true);
-            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+    public void calculate(View view) {
+        if (intent.getStringExtra("algo").equals("dfs")) {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View popup = inflater.inflate(R.layout.startingvertex, null);
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            final PopupWindow popupWindow = new PopupWindow(popup, width, height, true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 popupWindow.setElevation(20);
             }
-            popupWindow.showAtLocation(view , Gravity.CENTER , 0 , 0);
-            final EditText input=(EditText)popup.findViewById(R.id.input);
-            Button start=(Button)popup.findViewById(R.id.start);
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+            final EditText input = (EditText) popup.findViewById(R.id.input);
+            Button start = (Button) popup.findViewById(R.id.start);
             start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String x =input.getText().toString();
+                    String x = input.getText().toString();
                     popupWindow.dismiss();
-                    result.setData(dview.graph , dview.height  , typeflag , x);
+                    result.setData(dview.graph, dview.height, typeflag, x);
                     startActivity(resultintent);
-                    }
+                }
             });
+        }
     }
 }

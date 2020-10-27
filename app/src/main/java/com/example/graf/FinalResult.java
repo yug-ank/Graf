@@ -66,6 +66,9 @@ public class FinalResult extends View implements Serializable {
 
         this.invalidate();
     }
+    public void ss(){
+        Log.i("rectify" , "started in dfs");
+    }
     public void onDraw(Canvas canvas){
         super.onDraw(canvas);
         canvas.drawColor(Color.WHITE);
