@@ -44,13 +44,13 @@ public class FinalResult extends View implements Serializable {
         circlePaint=new Paint();
         textPaint=new Paint(Paint.UNDERLINE_TEXT_FLAG);
         linePaint=new Paint();
-        circlePaint.setColor(Color.GRAY);
+        //circlePaint.setColor(Color.GRAY);
         circlePaint.setAntiAlias(true);
         textPaint.setColor(Color.WHITE);
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setAntiAlias(true);
         linePaint.setAntiAlias(true);
-        linePaint.setColor(Color.GRAY);
+        //linePaint.setColor(Color.GRAY);
         float screenwidth=this.getResources().getDisplayMetrics().widthPixels;
         float stroke=screenwidth*0.0035f;
         linePaint.setStrokeWidth(stroke);
@@ -61,8 +61,8 @@ public class FinalResult extends View implements Serializable {
         this.prevheight=prevheight;
         this.type=type;
         this.start=start;
-
-        this.invalidate();
+        invalidate();
+        requestLayout();
     }
     public void onDraw(Canvas canvas){
         super.onDraw(canvas);
@@ -73,7 +73,9 @@ public class FinalResult extends View implements Serializable {
             graph.updateHeight(ratio , type , this.getResources().getDisplayMetrics().widthPixels);
             flag=1;
         }
-        Log.i("rectify" , start);
+        Log.i("rectify" , "infinal");
+        Log.i("rectify" , ""+graph.getNode("1").getHex());
+        Log.i("rectify" , ""+graph.getNode("2").getHex());
         for(Map.Entry<String , ArrayList<String>> i:graph.getAdjacencylist().entrySet()){
             Node nu=graph.getNode(i.getKey());
             Rect bound=new Rect();
@@ -87,10 +89,12 @@ public class FinalResult extends View implements Serializable {
             canvas.drawText(u , nu.getCenterx() , nu.getCentery()+(bound.height()/2) , textPaint);
             for(String v:i.getValue()){
                 Node nv=graph.getNode(v);
+                circlePaint.setColor(nv.getHex());
                 canvas.drawCircle(nv.getCenterx() , nv.getCentery() , nv.getRadius() , circlePaint);
                 textPaint.getTextBounds(v , 0 , v.length() , bound);
                 canvas.drawText(v , nv.getCenterx() , nv.getCentery()+(bound.height()/2) , textPaint);
                 Edges e=graph.getEdge(u , v);
+               // Log.i("rectify" , u+v+" "+e.getHex());
                 linePaint.setColor(e.getHex());
                 canvas.drawLine(e.getStartingx() , e.getStartingy() , e.getEndingx() , e.getEndingy() , linePaint);
                 if(type==1){

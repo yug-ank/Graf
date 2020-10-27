@@ -8,9 +8,9 @@ import android.graphics.Color;
 class Edges {
         private float startingx , startingy;
         private float endingx , endingy;
-        private int hex= Color.GRAY;
+        private int hex;
         public Edges() {
-
+            hex= Color.GRAY;
         }
         /**
           *
@@ -71,7 +71,6 @@ class Edges {
         this.hex=hex;
     }
     public int getHex(){
-        return hex;
+            return hex;
     }
-
 }

@@ -218,6 +218,10 @@ class Graph {
             float y = i.getCentery() * ratio;
             i.updatey(y);
         }
+        Map<String , Integer> hexvalue=new HashMap<>();
+        for(Map.Entry<String  , Edges> i:edgeList.entrySet()){
+            hexvalue.put(i.getKey() , i.getValue().getHex());
+        }
         edgeList.clear();
         strokeList.clear();
         for (Map.Entry<String, ArrayList<String>> i : adjacencyList.entrySet()) {
@@ -238,6 +242,9 @@ class Graph {
                 }
             }
         }
-        Log.i("rectify" , "edges-"+edgeList.keySet());
+        for(Map.Entry<String  , Integer> i:hexvalue.entrySet()){
+            edgeList.get(i.getKey()).updateHex(i.getValue());
+        }
+
     }
 }
