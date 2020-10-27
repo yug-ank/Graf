@@ -14,7 +14,7 @@
         app:topRightRadius="20dp"
         app:shadowSpread="2"
         >
-        <com.example.graf.Dfs
+        <com.example.graf.FinalResult
             android:id="@+id/resultview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
