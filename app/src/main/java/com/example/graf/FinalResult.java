@@ -7,8 +7,6 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.widget.RelativeLayout;
-
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -82,6 +80,7 @@ public class FinalResult extends View implements Serializable {
             textPaint.setUnderlineText(false);
             float textsize=nu.getTextSize();
             textPaint.setTextSize(textsize);
+            circlePaint.setColor(nu.getHex());
             canvas.drawCircle(nu.getCenterx() , nu.getCentery() , nu.getRadius() , circlePaint);
             String u=i.getKey();
             textPaint.getTextBounds(u , 0 , u.length() , bound);
@@ -92,6 +91,7 @@ public class FinalResult extends View implements Serializable {
                 textPaint.getTextBounds(v , 0 , v.length() , bound);
                 canvas.drawText(v , nv.getCenterx() , nv.getCentery()+(bound.height()/2) , textPaint);
                 Edges e=graph.getEdge(u , v);
+                linePaint.setColor(e.getHex());
                 canvas.drawLine(e.getStartingx() , e.getStartingy() , e.getEndingx() , e.getEndingy() , linePaint);
                 if(type==1){
                     Stroke s=graph.getStroke(u , v);

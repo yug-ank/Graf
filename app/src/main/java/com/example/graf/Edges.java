@@ -1,11 +1,14 @@
 package com.example.graf;
 
+import android.graphics.Color;
+
 /**
  * this class represents an edge drawn between two nodes
  */
 class Edges {
         private float startingx , startingy;
         private float endingx , endingy;
+        private int hex= Color.GRAY;
         public Edges() {
 
         }
@@ -64,4 +67,11 @@ class Edges {
             this.endingx = endingx;
             this.endingy = endingy;
         }
+    public void updateHex(int hex) {
+        this.hex=hex;
+    }
+    public int getHex(){
+        return hex;
+    }
+
 }

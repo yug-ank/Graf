@@ -1,4 +1,7 @@
 package com.example.graf;
+
+import android.graphics.Color;
+
 /**
  * This class represents a node
  */
@@ -6,7 +9,7 @@ class Node {
     private float centerx , centery;
     private float radius;
     private float textSize;
-
+    private int hex= Color.GRAY;
     /**
      * @param centerx holds the x co-ordinate of center of circle
      * @param centery holds the y co-cordinate of center of circle
@@ -32,6 +35,10 @@ class Node {
     public float getTextSize(){
         return textSize;
     }
+
+    public int getHex(){
+        return hex;
+    }
     public void updateRadius(float radius){
         //updates the value of radius and textSize
         this.radius=radius;
@@ -40,5 +47,8 @@ class Node {
     public void updatey(float centery){
         //updates the value of y co-ordinate
         this.centery=centery;
+    }
+    public void updateHex(int hex){
+        this.hex=hex;
     }
 }
