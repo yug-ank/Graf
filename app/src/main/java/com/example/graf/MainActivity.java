@@ -26,4 +26,9 @@ public class MainActivity extends Activity {
         intent.putExtra("algo" , "dfs");
         startActivity(intent);
     }
+    public void ts(View view){
+        Intent intent = new Intent(this , SelectType.class);
+        intent.putExtra("algo" , "ts");
+        startActivity(intent);
+    }
 }

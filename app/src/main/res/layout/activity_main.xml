@@ -76,6 +76,7 @@
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
             android:text="Topological\nsorting"
+            android:onClick="ts"
             />
 
     </GridLayout>
