@@ -9,18 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-                  android:noHistory="true">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SelectType"></activity>
-        <activity android:name=".Draw"
-                  android:screenOrientation="landscape"></activity>
-        <activity android:name=".Result"
+        <activity android:name=".SelectType" />
+        <activity
+            android:name=".Draw"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Result"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ResultWithOutput"
+            android:screenOrientation="landscape" />
+        <activity android:name=".DrawWithWeight"
                   android:screenOrientation="landscape"></activity>
     </application>
 

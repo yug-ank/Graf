@@ -11,6 +11,8 @@ class Graph {
     private Map<String , Edges> edgeList;
     private Map<String , ArrayList<String>> adjacencyList;
     private Map<String , Stroke> strokeList;
+    private Map<String , Integer> weightList;
+    private int wFlag=0;
 
     /**
      * nodeList contains the value of a node mapped to its co-ordinate on the view
@@ -24,6 +26,7 @@ class Graph {
         edgeList=new HashMap<>();
         adjacencyList=new HashMap<>();
         strokeList=new HashMap<>();
+        weightList=new HashMap<>();
     }
 
     public Map<String, Node> getNodeList() {
@@ -40,14 +43,35 @@ class Graph {
         //returns the strokeList
         return strokeList;
     }
+
     public Map<String, ArrayList<String>> getAdjacencylist() {
         //returns the adjacencyList
         return adjacencyList;
     }
 
+    public Map<String , Integer> getWeightList(){
+        return weightList;
+    }
+
     public void addVertex(String s){
         //add a node to graph if not present
         adjacencyList.put(s , new ArrayList<String>());
+    }
+
+    public void addWeight(String u , String v , int w){
+        weightList.put(u+v , w);
+    }
+
+    public int getWeight(String u , String v){
+       return weightList.get(u+v);
+    }
+
+    public void setWeightFlag(int wFlag){
+        this.wFlag=wFlag;
+    }
+
+    public int getWeightFlag(){
+        return wFlag;
     }
 
     public void addUndirectedEdge(String s , String d){
