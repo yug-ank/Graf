@@ -49,7 +49,7 @@
             android:textSize="18sp"
             android:textStyle="bold" />
         <EditText
-            android:imeOptions="flagNoExtractUi"
+            android:imeOptions="actionDone"
             android:id="@+id/end"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
