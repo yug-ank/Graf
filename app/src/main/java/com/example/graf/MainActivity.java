@@ -29,4 +29,8 @@ public class MainActivity extends Activity {
         intent.putExtra("algo" , "ts");
         startActivity(intent);
     }
+    public void mst(View view){
+        intent.putExtra("algo" , "mst");
+        startActivity(intent);
+    }
 }

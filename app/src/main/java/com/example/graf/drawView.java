@@ -33,6 +33,7 @@ public class drawView extends View {
     static float height;
     static float screenwidth;
     static int type;
+
     /**
      * scaling used to reduce the scale of radius of node when number of nodes increase a particular value
      * graph represents the object of graph class
@@ -179,6 +180,13 @@ public class drawView extends View {
                     Stroke s=graph.getStroke(u , v);
                     canvas.drawLine(s.getStartx() , s.getStarty() , s.getEndx1() , s.getEndy1() , linePaint);
                     canvas.drawLine(s.getStartx() , s.getStarty() , s.getEndx2() , s.getEndy2() , linePaint);
+                }
+                if(graph.getWeightFlag()==1){
+                    String w=Integer.toString(graph.getWeight(u , v));
+                    textPaint.getTextBounds(w , 0 , w.length() , bound);
+                    float wx=(e.getStartingx()+e.getEndingx())/2;
+                    float wy=(e.getEndingy()+e.getStartingy())/2;
+                    canvas.drawText(w , wx , wy , textPaint);
                 }
             }
         }
