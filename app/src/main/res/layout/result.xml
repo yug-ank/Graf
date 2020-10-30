@@ -6,4 +6,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#e1f6fc"
     tools:context=".Result">
+        <com.blure.complexview.ComplexView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:shadow="true"
+            app:bottomLeftRadius="20dp"
+            app:bottomRightRadius="20dp"
+            app:topLeftRadius="20dp"
+            app:topRightRadius="20dp"
+            app:shadowSpread="2"
+            >
+            <com.example.graf.FinalResult
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp" />
+        </com.blure.complexview.ComplexView>
 </RelativeLayout>

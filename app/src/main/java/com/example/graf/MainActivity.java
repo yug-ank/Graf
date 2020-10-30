@@ -10,24 +10,22 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends Activity {
-
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        intent=new Intent(this , SelectType.class);
     }
     public void bfs(View view){
-        Intent intent=new Intent(this , SelectType.class);
         intent.putExtra("algo" , "bfs");
         startActivity(intent);
     }
     public void dfs(View view){
-        Intent intent = new Intent(this , SelectType.class);
         intent.putExtra("algo" , "dfs");
         startActivity(intent);
     }
     public void ts(View view){
-        Intent intent = new Intent(this , SelectType.class);
         intent.putExtra("algo" , "ts");
         startActivity(intent);
     }

@@ -218,9 +218,9 @@ class Graph {
             float y = i.getCentery() * ratio;
             i.updatey(y);
         }
-        Map<String , Integer> hexvalue=new HashMap<>();
+        Map<String , Integer> edgeHexValue=new HashMap<>();
         for(Map.Entry<String  , Edges> i:edgeList.entrySet()){
-            hexvalue.put(i.getKey() , i.getValue().getHex());
+            edgeHexValue.put(i.getKey() , i.getValue().getHex());
         }
         edgeList.clear();
         strokeList.clear();
@@ -242,9 +242,8 @@ class Graph {
                 }
             }
         }
-        for(Map.Entry<String  , Integer> i:hexvalue.entrySet()){
+        for(Map.Entry<String  , Integer> i:edgeHexValue.entrySet()){
             edgeList.get(i.getKey()).updateHex(i.getValue());
         }
-
     }
 }
