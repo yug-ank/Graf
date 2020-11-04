@@ -52,6 +52,7 @@
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
             android:text="Shortest\npath"
+            android:onClick="sp"
             />
         <Button
             android:id="@+id/cd"
@@ -60,6 +61,7 @@
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
             android:text="Cycle\ndetection"
+            android:onClick="cd"
             />
         <Button
             android:id="@+id/mst"
@@ -68,6 +70,7 @@
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
             android:text="Minimum\nspanning\ntree"
+            android:onClick="mst"
             />
         <Button
             android:id="@+id/ts"
@@ -78,6 +81,13 @@
             android:text="Topological\nsorting"
             android:onClick="ts"
             />
-
+        <Button
+            android:id="@+id/path"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/optionbutton"
+            android:layout_margin="5dp"
+            android:text="PATH\nBETWEEN\nTWO\nNODES"
+            android:onClick="path"/>
     </GridLayout>
 </LinearLayout>

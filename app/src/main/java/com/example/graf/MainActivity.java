@@ -33,4 +33,16 @@ public class MainActivity extends Activity {
         intent.putExtra("algo" , "mst");
         startActivity(intent);
     }
+    public void path(View view){
+        intent.putExtra("algo" , "path");
+        startActivity(intent);
+    }
+    public void cd(View view){
+        intent.putExtra("algo" , "cd");
+        startActivity(intent);
+    }
+    public void sp(View view){
+        intent.putExtra("algo" , "sp");
+        startActivity(intent);
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.graf;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -183,6 +184,7 @@ public class drawView extends View {
                 }
                 if(graph.getWeightFlag()==1){
                     String w=Integer.toString(graph.getWeight(u , v));
+                    textPaint.setTextSize(textsize/2);
                     textPaint.getTextBounds(w , 0 , w.length() , bound);
                     float wx=(e.getStartingx()+e.getEndingx())/2;
                     float wy=(e.getEndingy()+e.getStartingy())/2;

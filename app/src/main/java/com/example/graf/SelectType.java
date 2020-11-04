@@ -28,7 +28,7 @@ public class SelectType extends Activity {
     public void directed(View view){
         intent.putExtra(type , "directed");
         weightIntent.putExtra(type , "directed");
-        if(sourceintent.getStringExtra("algo").equals("mst")){
+        if(sourceintent.getStringExtra("algo").equals("mst") || sourceintent.getStringExtra("algo").equals("sp")){
                 startActivity(weightIntent);
         }
         else {
@@ -38,7 +38,7 @@ public class SelectType extends Activity {
     public void undirected(View view){
         intent.putExtra(type , "undirected");
         weightIntent.putExtra(type , "undirected");
-        if(sourceintent.getStringExtra("algo").equals("mst")){
+        if(sourceintent.getStringExtra("algo").equals("mst") || sourceintent.getStringExtra("algo").equals("sp")){
                 startActivity(weightIntent);
         }
         else {

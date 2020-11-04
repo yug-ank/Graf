@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class cd extends Result{
+public class CycleDetection extends ResultWithOutput {
+    int found=0;
     public void result(){
         finalResult.setData(graph , prevheight , type , start);
         Map<String , Boolean> visited = new HashMap<>();
@@ -20,10 +21,10 @@ public class cd extends Result{
             if(isCyclic(i,visited,recStack)){
                 //graph has a cycle cyclic
                 graph.getNodeList().get(i).updateHex(Color.YELLOW);
-                return;
+                found=1;
+                break;
             }
         }
-        Toast.makeText(this, "No Cycle Found", Toast.LENGTH_LONG).show();
     }
     public Boolean isCyclic(String i,Map<String , Boolean> visited ,Map<String , Boolean> recStack){
         if(recStack.get(i)) return true;
@@ -34,6 +35,7 @@ public class cd extends Result{
         for(String c : children){
             if(isCyclic(c,visited,recStack)) {
                 graph.getNodeList().get(c).updateHex(Color.YELLOW);
+                graph.getNodeList().get(i).updateHex(Color.YELLOW);
                 graph.getEdgeList().get(i+c).updateHex(Color.YELLOW);
                 if(type==0)
                     graph.getEdgeList().get(c+i).updateHex(Color.YELLOW);
@@ -42,5 +44,8 @@ public class cd extends Result{
         }
         recStack.put(i,false);
         return  false;
+    }
+    public int getFound(){
+        return found;
     }
 }

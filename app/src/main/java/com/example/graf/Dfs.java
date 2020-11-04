@@ -32,6 +32,27 @@ public class Dfs extends ResultWithOutput{
                 }
             }
         }
+        for(String x:graph.getNodeList().keySet()){
+            if(!visited.get(x)){
+                stk.push(x);
+                while (!stk.empty()) {
+                    String u = stk.pop();
+                    graph.getNodeList().get(u).updateHex(Color.YELLOW);
+                    visited.put(u, true);
+                    res.append(u+" ");
+                    for (String v : graph.getAdjacencylist().get(u)) {
+                        if (!visited.get(v)) {
+                            stk.push(v);
+                            visited.put(v, true);
+                            graph.getEdgeList().get(u + v).updateHex(Color.YELLOW);
+                            if (type == 0) {
+                                graph.getEdgeList().get(v + u).updateHex(Color.YELLOW);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     public String getRes(){
         return res.toString();

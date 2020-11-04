@@ -74,7 +74,7 @@
             android:textSize="18sp"
             android:textStyle="bold" />
         <EditText
-            android:imeOptions="actionDone"
+            android:imeOptions="actionDone|flagNoExtractUi"
             android:id="@+id/weight"
             android:layout_width="100dp"
             android:layout_height="wrap_content"

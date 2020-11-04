@@ -72,6 +72,9 @@ public class  DrawWithWeight extends Activity {
         String v = to.getText().toString();
         int w=Integer.parseInt(weight.getText().toString());
         dview.setType(typeflag);
+        if(typeflag==1 && dview.graph.getWeightList().containsKey(v+u)==true){
+            Toast.makeText(this , "edge is already directed" , Toast.LENGTH_SHORT).show();
+        }
         dview.graph.addWeight(u , v , w);
         if(typeflag==0){
             dview.graph.addWeight(v , u , w);
@@ -80,6 +83,31 @@ public class  DrawWithWeight extends Activity {
     }
 
     public void calculate(View view) {
-
+            if(intent.getStringExtra("algo").equals("mst")){
+                resultWithOutput.setData(dview.graph, dview.height, typeflag);
+                startActivity(resultWithOutputIntent);
+            }
+            if(intent.getStringExtra("algo").equals("sp")){
+                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popup = inflater.inflate(R.layout.startingvertex, null);
+                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                final PopupWindow popupWindow = new PopupWindow(popup, width, height, true);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    popupWindow.setElevation(20);
+                }
+                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+                final EditText input = (EditText) popup.findViewById(R.id.input);
+                Button start = (Button) popup.findViewById(R.id.start);
+                start.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String x = input.getText().toString();
+                        popupWindow.dismiss();
+                        result.setData(dview.graph, dview.height, typeflag, x);
+                        startActivity(resultintent);
+                    }
+                });
+            }
     }
 }

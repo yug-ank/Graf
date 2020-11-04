@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-public class scc extends ResultWithOutput {
+public class scc extends Result {
     //main function for changing colors of graph is DFSUtil
     StringBuilder res = new StringBuilder();
     public void result(){

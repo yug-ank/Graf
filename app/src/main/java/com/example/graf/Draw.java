@@ -73,6 +73,28 @@ public class  Draw extends Activity {
     }
 
     public void calculate(View view) {
+        if (intent.getStringExtra("algo").equals("bfs")) {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View popup = inflater.inflate(R.layout.startingvertex, null);
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            final PopupWindow popupWindow = new PopupWindow(popup, width, height, true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                popupWindow.setElevation(20);
+            }
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+            final EditText input = (EditText) popup.findViewById(R.id.input);
+            Button start = (Button) popup.findViewById(R.id.start);
+            start.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String x = input.getText().toString();
+                    popupWindow.dismiss();
+                    resultWithOutput.setData(dview.graph, dview.height, typeflag, x);
+                    startActivity(resultWithOutputIntent);
+                }
+            });
+        }
         if (intent.getStringExtra("algo").equals("dfs")) {
             LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
             View popup = inflater.inflate(R.layout.startingvertex, null);
@@ -116,6 +138,34 @@ public class  Draw extends Activity {
                     startActivity(resultWithOutputIntent);
                 }
             });
+        }
+        if(intent.getStringExtra("algo").equals("path")){
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View popup = inflater.inflate(R.layout.startingendingvertex, null);
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            final PopupWindow popupWindow = new PopupWindow(popup, width, height, true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                popupWindow.setElevation(20);
+            }
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+            final EditText inputstart = (EditText) popup.findViewById(R.id.inputstart);
+            final EditText inputend = (EditText) popup.findViewById(R.id.inputend);
+            Button start = (Button) popup.findViewById(R.id.start);
+            start.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String u = inputstart.getText().toString();
+                    String v=   inputend.getText().toString();
+                    popupWindow.dismiss();
+                    resultWithOutput.setData(dview.graph, dview.height, typeflag, u , v);
+                    startActivity(resultWithOutputIntent);
+                }
+            });
+        }
+        if(intent.getStringExtra("algo").equals("cd")){
+            resultWithOutput.setData(dview.graph , dview.height , typeflag);
+            startActivity(resultWithOutputIntent);
         }
     }
 }
