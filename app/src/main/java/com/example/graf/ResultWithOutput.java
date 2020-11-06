@@ -68,6 +68,18 @@ public class ResultWithOutput extends Activity {
             }
             finalResult.setData(graph , prevheight , type , start);
         }
+        if(intent.getStringExtra("algo").equals("scc")){
+            stronglyConectedComponents scc = new stronglyConectedComponents();
+            scc.result();
+            output.setText(scc.getRes());
+            finalResult.setData(graph , prevheight , type , start);
+        }
+        if(intent.getStringExtra("algo").equals("vtxcvr")){
+            vertexCover vtxcvr = new vertexCover();
+            vtxcvr.result();
+            output.setText(vtxcvr.getRes());
+            finalResult.setData(graph , prevheight , type , start);
+        }
     }
     public void setData(Graph graph , float prevheight ,int type , String start){
         this.graph=graph;

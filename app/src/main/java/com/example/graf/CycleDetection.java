@@ -18,7 +18,7 @@ public class CycleDetection extends ResultWithOutput {
             recStack.put(i,false);
         }
         for(String i : graph.getNodeList().keySet()){
-            if(isCyclic(i,visited,recStack)){
+            if(isCyclic(i,"-1",visited,recStack)){
                 //graph has a cycle cyclic
                 graph.getNodeList().get(i).updateHex(Color.YELLOW);
                 found=1;
@@ -26,14 +26,15 @@ public class CycleDetection extends ResultWithOutput {
             }
         }
     }
-    public Boolean isCyclic(String i,Map<String , Boolean> visited ,Map<String , Boolean> recStack){
+    public Boolean isCyclic(String i, String prev, Map<String , Boolean> visited ,Map<String , Boolean> recStack){
         if(recStack.get(i)) return true;
         if(visited.get(i)) return false;
         visited.put(i,true);
         recStack.put(i,true);
         ArrayList<String> children = graph.getAdjacencylist().get(i);
         for(String c : children){
-            if(isCyclic(c,visited,recStack)) {
+            if(c.equals(prev)) continue;
+            if(isCyclic(c,i,visited,recStack)) {
                 graph.getNodeList().get(c).updateHex(Color.YELLOW);
                 graph.getNodeList().get(i).updateHex(Color.YELLOW);
                 graph.getEdgeList().get(i+c).updateHex(Color.YELLOW);

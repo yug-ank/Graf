@@ -167,5 +167,13 @@ public class  Draw extends Activity {
             resultWithOutput.setData(dview.graph , dview.height , typeflag);
             startActivity(resultWithOutputIntent);
         }
+        if(intent.getStringExtra("algo").equals("scc")){
+            resultWithOutput.setData(dview.graph , dview.height , typeflag);
+            startActivity(resultWithOutputIntent);
+        }
+        if(intent.getStringExtra("algo").equals("vtxcvr")){
+            resultWithOutput.setData(dview.graph , dview.height , typeflag);
+            startActivity(resultWithOutputIntent);
+        }
     }
 }

@@ -45,4 +45,12 @@ public class MainActivity extends Activity {
         intent.putExtra("algo" , "sp");
         startActivity(intent);
     }
+    public void scc(View view){
+        intent.putExtra("algo" , "scc");
+        startActivity(intent);
+    }
+    public void vtxcvr(View view){
+        intent.putExtra("algo" , "vtxcvr");
+        startActivity(intent);
+    }
 }

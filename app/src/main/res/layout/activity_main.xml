@@ -89,5 +89,21 @@
             android:layout_margin="5dp"
             android:text="PATH\nBETWEEN\nTWO\nNODES"
             android:onClick="path"/>
+        <Button
+            android:id="@+id/scc"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/optionbutton"
+            android:layout_margin="5dp"
+            android:text="STRONGLY\nCONECTED\nCOMPONENTS"
+            android:onClick="scc"/>
+        <Button
+            android:id="@+id/vtxcvr"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/optionbutton"
+            android:layout_margin="5dp"
+            android:text="VERTEX\nCOVER"
+            android:onClick="vtxcvr"/>
     </GridLayout>
 </LinearLayout>
