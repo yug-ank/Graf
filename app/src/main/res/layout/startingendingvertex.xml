@@ -7,7 +7,7 @@
     android:gravity="center"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/popup">
+    android:background="@color/secondary">
     <LinearLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
@@ -23,7 +23,9 @@
             android:background="@drawable/borderlayout"
             android:imeOptions="flagNoExtractUi"
             android:padding="10dp"
+            android:textSize="15dp"
             android:singleLine="true"
+            android:textColorHint="@color/grey"
             android:hint="starting"/>
         <EditText
             android:id="@+id/inputend"
@@ -34,13 +36,18 @@
             android:imeOptions="flagNoExtractUi"
             android:padding="10dp"
             android:singleLine="true"
+            android:textSize="15dp"
+            android:textColorHint="@color/grey"
             android:hint="ending"/>
+
         <Button
             android:id="@+id/start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/borderbutton"
-            android:text="start"
+            android:background="@drawable/buttonbackground"
+            android:text="Start"
+            android:textColor="@color/secondary"
+            android:textSize="20dp"
             android:layout_marginVertical="10dp"
             />
     </LinearLayout>

@@ -7,7 +7,7 @@
     android:gravity="center"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/popup">
+    android:background="@color/secondary">
     <LinearLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
@@ -18,9 +18,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="enter starting vertex"
+            android:text="Enter Starting Vertex"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textColor="@color/colorAccent"
             android:padding="10dp"/>
 
         <EditText
@@ -36,8 +37,10 @@
             android:id="@+id/start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/borderbutton"
-            android:text="start"
+            android:background="@drawable/buttonbackground"
+            android:text="Start"
+            android:textSize="15dp"
+            android:textColor="@color/colorPrimary"
             android:layout_marginVertical="10dp"
             />
     </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#E1F6FC"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
     <TextView
@@ -13,7 +13,9 @@
         android:layout_height="wrap_content"
         android:text="Select Algorithm"
         android:textStyle="bold"
-        android:textSize="24dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
         android:textAlignment="center" />
 
     <GridLayout
@@ -34,6 +36,9 @@
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
             android:text="Breadth\nFirst\nSearch"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:gravity="center"
             android:onClick="bfs"
             />
         <Button
@@ -44,6 +49,9 @@
             android:layout_margin="5dp"
             android:text="Depth\nfirst\nsearch"
             android:onClick="dfs"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:gravity="center"
             />
         <Button
             android:id="@+id/sp"
@@ -51,8 +59,11 @@
             android:layout_columnWeight="1"
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
-            android:text="Shortest\npath"
+            android:text="Shortest\nPath"
             android:onClick="sp"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:gravity="center"
             />
         <Button
             android:id="@+id/cd"
@@ -60,8 +71,11 @@
             android:layout_columnWeight="1"
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
-            android:text="Cycle\ndetection"
+            android:text="Cycle\nDetection"
             android:onClick="cd"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:gravity="center"
             />
         <Button
             android:id="@+id/mst"
@@ -69,8 +83,11 @@
             android:layout_columnWeight="1"
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
-            android:text="Minimum\nspanning\ntree"
+            android:text="Minimum\nSpanning\nTree"
             android:onClick="mst"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:gravity="center"
             />
         <Button
             android:id="@+id/ts"
@@ -78,8 +95,11 @@
             android:layout_columnWeight="1"
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
-            android:text="Topological\nsorting"
+            android:text="Topological\nSorting"
             android:onClick="ts"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:gravity="center"
             />
         <Button
             android:id="@+id/path"
@@ -87,23 +107,32 @@
             android:layout_columnWeight="1"
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
-            android:text="PATH\nBETWEEN\nTWO\nNODES"
-            android:onClick="path"/>
+            android:text="Path\nbetween\ntwo\nNodes"
+            android:onClick="path"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:gravity="center"/>
         <Button
             android:id="@+id/scc"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
-            android:text="STRONGLY\nCONECTED\nCOMPONENTS"
-            android:onClick="scc"/>
+            android:text="Strongly\nConnected\nComponents"
+            android:onClick="scc"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:gravity="center"/>
         <Button
             android:id="@+id/vtxcvr"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/optionbutton"
             android:layout_margin="5dp"
-            android:text="VERTEX\nCOVER"
-            android:onClick="vtxcvr"/>
+            android:text="Vertex\nCover"
+            android:onClick="vtxcvr"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:gravity="center"/>
     </GridLayout>
 </LinearLayout>
