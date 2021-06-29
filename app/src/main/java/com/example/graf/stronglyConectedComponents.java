@@ -50,7 +50,7 @@ public class stronglyConectedComponents extends ResultWithOutput {
             if(!visited.get(u)){
                 res.append(u+" ");
                 DFSUtil(u, visited, gr);
-                graph.getNodeList().get(u).updateHex(Color.YELLOW);
+                graph.getNodeList().get(u).updateHex(Color.parseColor("#93A2DB"));
                 res.append(": ");
             }
         }
@@ -86,11 +86,11 @@ public class stronglyConectedComponents extends ResultWithOutput {
             if(!visited.get(v)){
                 DFSUtil(v, visited, gr);
                 res.append(v+" ");
-                graph.getNodeList().get(v).updateHex(Color.YELLOW);
+                graph.getNodeList().get(v).updateHex(Color.parseColor("#93A2DB"));
             }
-            graph.getEdgeList().get(v + u).updateHex(Color.YELLOW);
+            graph.getEdgeList().get(v + u).updateHex(Color.parseColor("#93A2DB"));
             if (type == 0) {
-                graph.getEdgeList().get(u + v).updateHex(Color.YELLOW);
+                graph.getEdgeList().get(u + v).updateHex(Color.parseColor("#93A2DB"));
             }
         }
     }

@@ -35,14 +35,14 @@ public class ShortestPath extends Result {
             }
         }
         for(Map.Entry<String , String> i:Parent.entrySet()){
-            graph.getNodeList().get(i.getKey()).updateHex(Color.YELLOW);
+            graph.getNodeList().get(i.getKey()).updateHex(Color.parseColor("#93A2DB"));
             if(i.getValue()!=null) {
                 if (graph.getEdgeList().get(i.getValue() + i.getKey()) != null) {
-                        graph.getEdgeList().get(i.getValue()+i.getKey()).updateHex(Color.YELLOW);
+                        graph.getEdgeList().get(i.getValue()+i.getKey()).updateHex(Color.parseColor("#93A2DB"));
                         if(type==0){
-                            graph.getEdgeList().get(i.getKey()+i.getValue()).updateHex(Color.YELLOW);
+                            graph.getEdgeList().get(i.getKey()+i.getValue()).updateHex(Color.parseColor("#93A2DB"));
                         }
-                        graph.getNodeList().get(i.getValue()).updateHex(Color.YELLOW);
+                        graph.getNodeList().get(i.getValue()).updateHex(Color.parseColor("#93A2DB"));
                 }
             }
         }

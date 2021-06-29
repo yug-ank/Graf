@@ -46,7 +46,7 @@ public class FinalResult extends View implements Serializable {
         linePaint=new Paint();
         //circlePaint.setColor(Color.GRAY);
         circlePaint.setAntiAlias(true);
-        textPaint.setColor(Color.WHITE);
+        textPaint.setColor(Color.parseColor("#053742"));
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setAntiAlias(true);
         linePaint.setAntiAlias(true);

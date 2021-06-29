@@ -19,15 +19,15 @@ public class Bfs extends ResultWithOutput {
         queue.add(u);
         while (queue.size() != 0){
             u = queue.poll();
-            graph.getNodeList().get(u).updateHex(Color.YELLOW);
+            graph.getNodeList().get(u).updateHex(Color.parseColor("#93A2DB"));
             res.append(u+" ");
             for(String v : graph.getAdjacencylist().get(u)){
                 if(!visited.get(v)){
                     visited.put(v,true);
                     queue.add(v);
-                    graph.getEdgeList().get(u + v).updateHex(Color.YELLOW);
+                    graph.getEdgeList().get(u + v).updateHex(Color.parseColor("#93A2DB"));
                     if (type == 0) {
-                        graph.getEdgeList().get(v + u).updateHex(Color.YELLOW);
+                        graph.getEdgeList().get(v + u).updateHex(Color.parseColor("#93A2DB"));
                     }
                 }
             }

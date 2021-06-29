@@ -1,6 +1,7 @@
 package com.example.graf;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import androidx.annotation.Nullable;
+
+import static com.example.graf.R.color.colorAccent;
 
 /**
  * class to draw the graph on the convas
@@ -72,11 +75,12 @@ public class drawView extends View {
         textPaint=new Paint(Paint.UNDERLINE_TEXT_FLAG);
         linePaint=new Paint();
         circlePaint.setAntiAlias(true);
-        textPaint.setColor(Color.RED);
+        circlePaint.setColor(Color.parseColor("#053742"));
+        textPaint.setColor(Color.parseColor("#E8F0F2"));
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setAntiAlias(true);
         linePaint.setAntiAlias(true);
-        linePaint.setColor(Color.BLACK);
+        linePaint.setColor(Color.parseColor("#053742"));
         screenwidth=this.getResources().getDisplayMetrics().widthPixels;
         float stroke=screenwidth*0.0035f;
         linePaint.setStrokeWidth(stroke);
@@ -188,7 +192,9 @@ public class drawView extends View {
                     textPaint.getTextBounds(w , 0 , w.length() , bound);
                     float wx=(e.getStartingx()+e.getEndingx())/2;
                     float wy=(e.getEndingy()+e.getStartingy())/2;
-                    canvas.drawText(w , wx , wy , textPaint);
+                    Paint newwtextPaint=textPaint;
+                    newwtextPaint.setColor(Color.parseColor("#93A2DB"));
+                    canvas.drawText(w , wx , wy , newwtextPaint);
                 }
             }
         }

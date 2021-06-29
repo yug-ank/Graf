@@ -18,16 +18,16 @@ public class Dfs extends ResultWithOutput{
         stk.push(start);
         while (!stk.empty()) {
             String u = stk.pop();
-            graph.getNodeList().get(u).updateHex(Color.YELLOW);
+            graph.getNodeList().get(u).updateHex(Color.parseColor("#93A2DB"));
             visited.put(u, true);
             res.append(u+" ");
             for (String v : graph.getAdjacencylist().get(u)) {
                 if (!visited.get(v)) {
                     stk.push(v);
                     visited.put(v, true);
-                    graph.getEdgeList().get(u + v).updateHex(Color.YELLOW);
+                    graph.getEdgeList().get(u + v).updateHex(Color.parseColor("#93A2DB"));
                     if (type == 0) {
-                        graph.getEdgeList().get(v + u).updateHex(Color.YELLOW);
+                        graph.getEdgeList().get(v + u).updateHex(Color.parseColor("#93A2DB"));
                     }
                 }
             }
@@ -37,16 +37,16 @@ public class Dfs extends ResultWithOutput{
                 stk.push(x);
                 while (!stk.empty()) {
                     String u = stk.pop();
-                    graph.getNodeList().get(u).updateHex(Color.YELLOW);
+                    graph.getNodeList().get(u).updateHex(Color.parseColor("#93A2DB"));
                     visited.put(u, true);
                     res.append(u+" ");
                     for (String v : graph.getAdjacencylist().get(u)) {
                         if (!visited.get(v)) {
                             stk.push(v);
                             visited.put(v, true);
-                            graph.getEdgeList().get(u + v).updateHex(Color.YELLOW);
+                            graph.getEdgeList().get(u + v).updateHex(Color.parseColor("#93A2DB"));
                             if (type == 0) {
-                                graph.getEdgeList().get(v + u).updateHex(Color.YELLOW);
+                                graph.getEdgeList().get(v + u).updateHex(Color.parseColor("#93A2DB"));
                             }
                         }
                     }

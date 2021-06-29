@@ -20,7 +20,7 @@ public class CycleDetection extends ResultWithOutput {
         for(String i : graph.getNodeList().keySet()){
             if(isCyclic(i,"-1",visited,recStack)){
                 //graph has a cycle cyclic
-                graph.getNodeList().get(i).updateHex(Color.YELLOW);
+                graph.getNodeList().get(i).updateHex(Color.parseColor("#93A2DB"));
                 found=1;
                 break;
             }
@@ -35,11 +35,11 @@ public class CycleDetection extends ResultWithOutput {
         for(String c : children){
             if(c.equals(prev)) continue;
             if(isCyclic(c,i,visited,recStack)) {
-                graph.getNodeList().get(c).updateHex(Color.YELLOW);
-                graph.getNodeList().get(i).updateHex(Color.YELLOW);
-                graph.getEdgeList().get(i+c).updateHex(Color.YELLOW);
+                graph.getNodeList().get(c).updateHex(Color.parseColor("#93A2DB"));
+                graph.getNodeList().get(i).updateHex(Color.parseColor("#93A2DB"));
+                graph.getEdgeList().get(i+c).updateHex(Color.parseColor("#93A2DB"));
                 if(type==0)
-                    graph.getEdgeList().get(c+i).updateHex(Color.YELLOW);
+                    graph.getEdgeList().get(c+i).updateHex(Color.parseColor("#93A2DB"));
                 return true;
             }
         }

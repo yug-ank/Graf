@@ -39,14 +39,14 @@ public class Ts extends ResultWithOutput{
         while(!stk.empty()){
             String u=stk.pop();
             postOrder++;
-            graph.getNodeList().get(u).updateHex(Color.YELLOW);
+            graph.getNodeList().get(u).updateHex(Color.parseColor("#93A2DB"));
             visited.put(u , true);
             for(String v:graph.getAdjacencylist().get(u)){
                 if(!visited.get(v)){
                     l.add(new Pair <Integer,String> (postOrder, v));
                     stk.push(v);
                     visited.put(v , true);
-                    graph.getEdgeList().get(u+v).updateHex(Color.YELLOW);
+                    graph.getEdgeList().get(u+v).updateHex(Color.parseColor("#93A2DB"));
                 }
             }
 

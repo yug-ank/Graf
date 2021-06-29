@@ -17,8 +17,8 @@ public class vertexCover extends ResultWithOutput {
                     if(!visited.get(v)){
                         visited.put(u,true);
                         visited.put(v,true);
-                        graph.getNodeList().get(u).updateHex(Color.YELLOW);
-                        graph.getNodeList().get(v).updateHex(Color.YELLOW);
+                        graph.getNodeList().get(u).updateHex(Color.parseColor("#93A2DB"));
+                        graph.getNodeList().get(v).updateHex(Color.parseColor("#93A2DB"));
                         res.append(u+" ");
                         res.append(v+" ");
                         break;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,40 +9,57 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:text="Select Type of Graph"
+        android:gravity="center"
         android:textAlignment="center"
-        android:textSize="20dp"
         android:textColor="@color/colorAccent"
+        android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginTop="30dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="200dp"
-        android:columnCount="2" >
+        android:id="@+id/gridLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:columnCount="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.6">
+
         <Button
             android:id="@+id/dg"
-            android:background="@drawable/optionbutton"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="Directed Graph"
-            android:textSize="15dp"
-            android:textColor="@color/colorAccent"
-            android:gravity="center"
+            android:layout_columnWeight="1"
             android:layout_margin="10dp"
-            android:onClick="directed"/>
+            android:background="@drawable/optionbutton"
+            android:gravity="center"
+            android:onClick="directed"
+            android:text="Directed Graph"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp" />
+
         <Button
             android:id="@+id/udg"
-            android:background="@drawable/optionbutton"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="Undirected Graph"
-            android:textSize="15dp"
-            android:textColor="@color/colorAccent"
-            android:gravity="center"
+            android:layout_columnWeight="1"
             android:layout_margin="10dp"
-            android:onClick="undirected"/>
+            android:background="@drawable/optionbutton"
+            android:gravity="center"
+            android:onClick="undirected"
+            android:text="Undirected Graph"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp" />
     </GridLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

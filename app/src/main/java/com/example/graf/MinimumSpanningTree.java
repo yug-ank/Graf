@@ -51,11 +51,11 @@ public class MinimumSpanningTree extends ResultWithOutput {
         }
         for(Map.Entry<String , String> i:Parent.entrySet()){
             if(i.getValue()!=null){
-                graph.getNodeList().get(i.getKey()).updateHex(Color.YELLOW);
+                graph.getNodeList().get(i.getKey()).updateHex(Color.parseColor("#93A2DB"));
                 if(graph.getEdgeList().get(i.getValue()+i.getKey())!=null){
-                    graph.getEdgeList().get(i.getValue()+i.getKey()).updateHex(Color.YELLOW);
+                    graph.getEdgeList().get(i.getValue()+i.getKey()).updateHex(Color.parseColor("#93A2DB"));
                     if(type==0){
-                        graph.getEdgeList().get(i.getKey()+i.getValue()).updateHex(Color.YELLOW);
+                        graph.getEdgeList().get(i.getKey()+i.getValue()).updateHex(Color.parseColor("#93A2DB"));
                     }
                 }
             }

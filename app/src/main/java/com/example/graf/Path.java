@@ -60,22 +60,22 @@ public class Path extends ResultWithOutput {
             while(depth.get(start)!=depth.get(end)){
                 if(depth.get(start)>depth.get(end)){
                     if(parent.get(start)!=null){
-                        graph.getNodeList().get(parent.get(start)).updateHex(Color.YELLOW);
-                        graph.getNodeList().get(start).updateHex(Color.YELLOW);
-                        graph.getEdgeList().get(parent.get(start)+start).updateHex(Color.YELLOW);
+                        graph.getNodeList().get(parent.get(start)).updateHex(Color.parseColor("#93A2DB"));
+                        graph.getNodeList().get(start).updateHex(Color.parseColor("#93A2DB"));
+                        graph.getEdgeList().get(parent.get(start)+start).updateHex(Color.parseColor("#93A2DB"));
                         if(type==0){
-                          graph.getEdgeList().get(start+parent.get(start)).updateHex(Color.YELLOW);
+                          graph.getEdgeList().get(start+parent.get(start)).updateHex(Color.parseColor("#93A2DB"));
                         }
                         start=parent.get(start);
                     }
                 }
                 else{
                     if(parent.get(end)!=null){
-                        graph.getNodeList().get(parent.get(end)).updateHex(Color.YELLOW);
-                        graph.getNodeList().get(end).updateHex(Color.YELLOW);
-                        graph.getEdgeList().get(parent.get(end)+end).updateHex(Color.YELLOW);
+                        graph.getNodeList().get(parent.get(end)).updateHex(Color.parseColor("#93A2DB"));
+                        graph.getNodeList().get(end).updateHex(Color.parseColor("#93A2DB"));
+                        graph.getEdgeList().get(parent.get(end)+end).updateHex(Color.parseColor("#93A2DB"));
                         if(type==0){
-                            graph.getEdgeList().get(end+parent.get(end)).updateHex(Color.YELLOW);
+                            graph.getEdgeList().get(end+parent.get(end)).updateHex(Color.parseColor("#93A2DB"));
                         }
                         end=parent.get(end);
                     }
@@ -84,18 +84,18 @@ public class Path extends ResultWithOutput {
             if(depth.get(start)==depth.get(end) &&parent.get(start)!=null && parent.get(end)!=null &&
                                     parent.get(start).equals(parent.get(end))) {
                 if (parent.get(start) != null) {
-                    graph.getNodeList().get(parent.get(start)).updateHex(Color.YELLOW);
+                    graph.getNodeList().get(parent.get(start)).updateHex(Color.parseColor("#93A2DB"));
                     if (graph.getEdgeList().get(parent.get(start) + start) != null) {
-                        graph.getEdgeList().get(parent.get(start) + start).updateHex(Color.YELLOW);
+                        graph.getEdgeList().get(parent.get(start) + start).updateHex(Color.parseColor("#93A2DB"));
                         if (type == 0) {
-                            graph.getEdgeList().get(start + parent.get(start)).updateHex(Color.YELLOW);
+                            graph.getEdgeList().get(start + parent.get(start)).updateHex(Color.parseColor("#93A2DB"));
                         }
                     }
                     if (parent.get(end) != null) {
                         if (graph.getEdgeList().get(parent.get(end) + end) != null) {
-                            graph.getEdgeList().get(parent.get(end) + end).updateHex(Color.YELLOW);
+                            graph.getEdgeList().get(parent.get(end) + end).updateHex(Color.parseColor("#93A2DB"));
                             if (type == 0) {
-                                graph.getEdgeList().get(end + parent.get(end)).updateHex(Color.YELLOW);
+                                graph.getEdgeList().get(end + parent.get(end)).updateHex(Color.parseColor("#93A2DB"));
                             }
                         }
                     }
